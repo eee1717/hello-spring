@@ -2,11 +2,12 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
-
+// JPA를 쓸려면 Transactional이 있어야지 쓸수있다. 이번의경우에는 회원가입할때 필요함으로 회원가입부분에 Transactional를 해도됨.
+@Transactional
 public class MemberService {
 
     // Alt+insert constructor 단축키
@@ -21,6 +22,7 @@ public class MemberService {
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
 
     /*
     * 회원가입
@@ -39,7 +41,7 @@ public class MemberService {
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
-                  throw  new IllegalStateException("이미 존재하는 회원");
+                  throw new IllegalStateException("이미 존재하는 회원");
           });
     }
 
