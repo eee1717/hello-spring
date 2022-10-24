@@ -13,6 +13,6 @@ public interface MemberRepository {
      List<Member> findAll(); //반환기능
 
 
-     void clearStore();
+//     void clearStore();
 }
 

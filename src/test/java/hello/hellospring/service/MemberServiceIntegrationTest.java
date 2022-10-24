@@ -20,7 +20,8 @@ class MemberServiceIntegrationTest {
 
     @Test
   //   @Commit commit 하면 db에 적용됨
-    public void 회원가입() { //Given
+    public void 회원가입() {
+        //Given
         Member member = new Member();
         member.setName("spring");
 

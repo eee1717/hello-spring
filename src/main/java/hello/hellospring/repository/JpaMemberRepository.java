@@ -46,10 +46,11 @@ public class JpaMemberRepository implements  MemberRepository{
 
 
 
+
     // clearStore()가 원래는없다 근데 왜없는지모르겠다. 없으면 작동안됨.
     // clearStore()는 데이터 중복의 문제가 발생할때 테스트할때 쓰이는것이다.
-    @Override
-    public void clearStore() {
-
-    }
+//    @Override
+//    public void clearStore() {
+//
+//    }
 }

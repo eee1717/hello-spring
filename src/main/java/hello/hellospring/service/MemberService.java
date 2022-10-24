@@ -33,9 +33,20 @@ public class MemberService {
         // IllegalStateException 부정 또는 올바르지 않은 때에 메소드가 불려 간 것을 나타냅니다.
         // Shift+ctrl+Alt +T refactor this 단축키
 
-        validateDuplicateMember(member); //중복회원 검증
-        memberRepository.save(member);
-         return  member.getId();
+
+        // method의 호출시간을 알고싶을때
+      long start = System.currentTimeMillis();
+
+        try {
+            validateDuplicateMember(member); //중복회원 검증
+            memberRepository.save(member);
+            return  member.getId();
+        }finally {
+         long finish =  System.currentTimeMillis();
+         long timeMs =  finish- start;
+         System.out.println("join =" +timeMs +"ms");
+        }
+
     }
 
     private void validateDuplicateMember(Member member) {
@@ -46,9 +57,21 @@ public class MemberService {
     }
 
     /* 전체화면 조회*/
+    // 주의 동영상에서는 findMembers로되어있지만 나는 findMember로 만들어놓음
     public List<Member> findMember(){
-       return memberRepository.findAll();
-    }
+        return memberRepository.findAll();
+        // 단일로 AOP 하는방법 다중 AOP를할려면 class를만들어서 TimeTraceAop를 통해하는게 편함
+//        long start = System.currentTimeMillis();
+//          try {
+//              return memberRepository.findAll();
+//          }finally {
+//              long finish =  System.currentTimeMillis();
+//              long timeMs =  finish- start;
+//              System.out.println("findMember =" +timeMs +"ms");
+//          }
+          }
+
+
 
     public  Optional<Member> findOne(Long memberId) {
         return  memberRepository.findById(memberId);

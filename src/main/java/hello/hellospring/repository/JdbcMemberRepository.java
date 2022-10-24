@@ -148,10 +148,10 @@ public class JdbcMemberRepository implements  MemberRepository{
 
     }
 
-    @Override
-    public void clearStore() {
-
-    }
+//    @Override
+//    public void clearStore() {
+//
+//    }
 
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
